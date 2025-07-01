@@ -27,12 +27,15 @@ This analysis explores coffee shop sales from January to June 2023, revealing ke
 ```sql syntax
 SELECT DISTINCT product_detail FROM dbo.cofFe_sales;
 ```
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8c31c9bc-7f5a-4e5d-ad8b-35cadd224c68" alt="Dashboard Visual" width="400"/>
+</p>
+
 ### 2. Month-over-Month Sales Quantities and Revenues
 - January recorded the lowest sales volume (24,870 items) and revenue (81,678 units).
 - February dipped slightly, likely due to seasonality or shorter month length.
 - Sales steadily increased from March to June, with June peaking at 50,942 items and 166,486 units revenue
 - Revenue growth outpaced volume, suggesting increased sales of premium or upsold items.
-
 ```sql syntax
 SELECT FORMAT(transaction_date, 'yyyy-MM') AS month, 
        SUM(transaction_qty) AS total_quantity,
@@ -41,6 +44,10 @@ FROM dbo.cofFe_sales
 GROUP BY FORMAT(transaction_date, 'yyyy-MM')
 ORDER BY month;
 ```
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a7ea8cfe-16ac-4853-859d-f0a32b3ccb05" alt="Dashboard Visual" width="400"/>
+</p>
+
 ### 3. Sales Volume Evolution by Product Category
 - Coffee leads sales volume, doubling from 10,355 units in January to 21,444 units in June.
 - Tea shows similar steady growth, reaching 16,401 units by June.
@@ -55,7 +62,9 @@ FROM dbo.coffe_sales
 GROUP BY product_category, FORMAT(transaction_date, 'yyyy-MM')
 ORDER BY product_category, month;
 ```
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1fe04ad7-fbbe-4610-bc50-cd193760f0b7" alt="Dashboard Visual" width="400"/>
+</p>
 ### 4. Pricing Range: Cheapest and Most Expensive Products
 - The highest-priced item is Civet Cat at 45 units, likely a premium specialty coffee.
 - Cheapest items are syrups priced around 0.80 units, serving as add-ons to main products.
@@ -68,6 +77,10 @@ WHERE unit_price = (SELECT MIN(unit_price) FROM dbo.cofFe_sales)
    OR unit_price = (SELECT MAX(unit_price) FROM dbo.cofFe_sales)
 ORDER BY unit_price DESC;
 ```
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/63d74d62-d33e-49bd-877c-49d98f33ead2" alt="Dashboard Visual" width="400"/>
+</p>
+
 
 ### 5. Highest Revenue-Generating Transaction
 - Transaction ID 133674 generated the highest revenue (360 units), likely involving premium items or bulk purchases.
@@ -79,6 +92,10 @@ FROM dbo.cofFe_sales
 GROUP BY transaction_id
 ORDER BY total_revenue DESC;
 ```
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8d12d6ed-0dba-415c-9f2a-e427f82fb9a4" alt="Dashboard Visual" width="400"/>
+</p>
+
 ### 6. Revenue by Product Category
 - The Coffee category leads revenue generation with approximately 269,952 units.
 - Tea follows as the second highest, generating around 196,406 units.
@@ -92,6 +109,9 @@ FROM dbo.cofFe_sales
 GROUP BY product_category
 ORDER BY total_revenue DESC;
 ```
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/056dd031-a982-44fb-84dc-3c3f3e6e7a9b" alt="Dashboard Visual" width="400"/>
+</p>
 
 ### 7. Sales Distribution by Store Location
 - Lower Manhattan, Hell’s Kitchen, and Astoria show nearly equal sales volumes (~71,000 items each).
@@ -102,6 +122,10 @@ FROM dbo.cofFe_sales
 GROUP BY store_location
 ORDER BY total_items_sold DESC;
 ```
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/dda95efb-2d1d-40ec-8b55-4f6f8f3ce31d" alt="Dashboard Visual" width="400"/>
+</p>
+
 ### 8. Top Transactions by Quantity
 - Maximum items purchased per transaction is 8, observed in multiple transactions.
 - Indicates a purchasing ceiling for bulk orders within the dataset.
@@ -112,6 +136,10 @@ FROM dbo.cofFe_sales
 GROUP BY transaction_id
 ORDER BY total_items DESC;
 ```
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/40216caf-ffc8-4100-a219-074f9c52fc53" alt="Dashboard Visual" width="400"/>
+</p>
+
 ## Recommendations
 
 ### Product Strategy
